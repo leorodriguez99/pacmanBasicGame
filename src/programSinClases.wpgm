@@ -1,0 +1,54 @@
+import wollok.game.*
+import juegoSinClases.*
+
+program pacman {
+	
+	game.title("Pacman!")
+	
+	// límites del juego
+	game.width(14)
+	game.height(8)
+	
+	// fondo
+	game.boardGround("pacmanBackground.jpg")
+	
+	// personaje principal
+	game.addVisualCharacter(pacman)
+
+	// rivales
+		game.addVisual(fantasma1)
+		game.addVisual(fantasma2)
+		game.addVisual(fantasma3)
+		game.addVisual(fantasma4)
+		game.whenCollideDo(fantasma1, { personaje =>
+			personaje.chocarCon(fantasma1) // se maneja un método polimórfico
+		})
+		game.onTick(4.randomUpTo(8) * 300, "movimiento", {
+			fantasma1.acercarseA(pacman)
+		})
+
+		game.whenCollideDo(fantasma2, { personaje =>
+			personaje.chocarCon(fantasma2) // se maneja un método polimórfico
+		})
+		game.onTick(4.randomUpTo(8) * 300, "movimiento", {
+			fantasma2.acercarseA(pacman)
+		})
+
+		game.whenCollideDo(fantasma3, { personaje =>
+			personaje.chocarCon(fantasma3) // se maneja un método polimórfico
+		})
+		game.onTick(4.randomUpTo(8) * 300, "movimiento", {
+			fantasma3.acercarseA(pacman)
+		})
+	
+		game.whenCollideDo(fantasma4, { personaje =>
+			personaje.chocarCon(fantasma4) // se maneja un método polimórfico
+		})
+		game.onTick(4.randomUpTo(8) * 300, "movimiento", {
+			fantasma4.acercarseA(pacman)
+		})
+	
+	// que arranque el juego!
+	game.start()
+	
+}
