@@ -1,5 +1,6 @@
 import wollok.game.*
 import example.*
+import rivales.*
 
 program pacman {
 	
@@ -7,13 +8,26 @@ program pacman {
 	game.width(14)
 	game.height(8)
 	
+	game.title("Pacman!")
 	// fondo
 	game.boardGround("pacmanBackground.jpg")
 	
 	// personaje principal
 	game.addVisualCharacter(pacman)
 	
+	game.addVisual(contador)
+	game.addVisual(rival1)
+	game.addVisual(rival2)
+	
+	game.whenCollideDo(rival1, {personaje => personaje.chocarCon(rival1);
+			rival1.chocarCon(personaje)})
+	
+	game.whenCollideDo(rival2, {personaje => personaje.chocarCon(rival2);
+			rival2.chocarCon(personaje)})
+		
 	// que arranque el juego!
 	game.start()
 	
+	
+
 }
